@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 
 const poppins = Poppins({
   weight: ["200", "400", "700", "900"],
+  subsets: ["latin"], // Add subsets here
 });
 
 export const metadata = {
