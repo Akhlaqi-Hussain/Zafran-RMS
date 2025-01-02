@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <section className="bg-gray-900 md:min-h-[75vh] flex flex-col items-center justify-center lg:justify-start">
       {/* Main Content */}
-      <div className="grid max-w-screen-2xl px-4 py-14 md:py-16 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
+      <div className="grid max-w-screen-2xl px-4 py-24 md:py-16 mx-auto lg:gap-8 xl:gap-0 lg:grid-cols-12">
         <div className="mr-auto text-center text-pretty md:space-y-10 place-self-center lg:col-span-6">
           <h1 className="max-w-2xl mb-4 text-2xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
             🍴 Savor the Flavor,

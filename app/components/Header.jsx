@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa"; // Import cart icon
 import { usePathname } from "next/navigation"; // Use usePathname for current route detection
 import Link from "next/link";
@@ -18,6 +18,28 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  // Close menu when clicking outside or on a link
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const target = event.target;
+
+      // Check if the click is outside the menu or on a link
+      if (
+        isMenuOpen &&
+        !target.closest("#mobile-menu-2") &&
+        !target.closest("button[aria-controls='mobile-menu-2']")
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isMenuOpen]);
 
   return (
     <header className="fixed top-0 w-full z-30 bg-white-500 transition-all">
@@ -71,6 +93,7 @@ const Header = () => {
                         ? "text-orange-500 font-bold animation-active"
                         : "text-white hover:text-orange-500"
                     }`}
+                    onClick={() => setIsMenuOpen(false)} // Close menu on link click
                   >
                     {link.name}
                   </Link>
