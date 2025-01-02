@@ -1,15 +1,17 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}", // If using the App Router
   ],
   theme: {
     extend: {
+      animation: {
+        "spin-slow": "spin 50s linear infinite",
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        goldenBrown: "#c49b63",
       },
     },
   },
