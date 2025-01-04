@@ -2,6 +2,8 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import "./globals.css";
 import { Poppins } from "next/font/google";
+import { CartProvider } from "./components/CartProvider";
+import { ToastContainer } from "react-toastify";
 
 const poppins = Poppins({
   weight: ["200", "400", "700", "900"],
@@ -15,12 +17,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={poppins.className}>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <CartProvider>
+      <html lang="en">
+        <body className={poppins.className}>
+          <ToastContainer position="top-right" autoClose={3000} />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </CartProvider>
   );
 }

@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa"; // Import cart icon
-import { usePathname } from "next/navigation"; // Use usePathname for current route detection
+import { FaBars, FaTimes, FaShoppingCart } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useCart } from "./CartProvider"; // Assuming you have a CartProvider
 
 const Header = () => {
   const navLinks = [
@@ -15,6 +16,10 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname(); // Get current path
 
+  // Fetch the cart from the CartProvider
+  const { cart } = useCart();
+  const totalItems = cart.reduce((total, item) => total + 1, 0); // Count total items
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -24,7 +29,6 @@ const Header = () => {
     const handleClickOutside = (event) => {
       const target = event.target;
 
-      // Check if the click is outside the menu or on a link
       if (
         isMenuOpen &&
         !target.closest("#mobile-menu-2") &&
@@ -52,8 +56,8 @@ const Header = () => {
             Zafran
           </Link>
           <div className="flex items-center lg:order-2">
-            {/* Cart Icon */}
-            <Link href="/cart" className="text-white mr-4">
+            {/* Cart Icon with Badge */}
+            <Link href="/cart" className="text-white relative mr-4">
               <FaShoppingCart
                 className={`w-6 h-6 ${
                   pathname === "/cart"
@@ -61,6 +65,11 @@ const Header = () => {
                     : "hover:text-orange-500"
                 }`}
               />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-3 bg-orange-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+                  {totalItems}
+                </span>
+              )}
             </Link>
             <button
               onClick={toggleMenu}
@@ -93,7 +102,7 @@ const Header = () => {
                         ? "text-orange-500 font-bold animation-active"
                         : "text-white hover:text-orange-500"
                     }`}
-                    onClick={() => setIsMenuOpen(false)} // Close menu on link click
+                    onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
                   </Link>

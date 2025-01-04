@@ -7,7 +7,7 @@ import ContactInfo from "./ContactInfo";
 const Hero2 = ({ pageTitle }) => {
   return (
     <>
-      <div className="relative h-[75vh] flex items-center justify-center text-white text-center">
+      <div className="relative h-[45vh] lg:h-[75vh] flex items-center justify-center text-white text-center">
         {/* Background Image */}
         <Image
           src={image}
