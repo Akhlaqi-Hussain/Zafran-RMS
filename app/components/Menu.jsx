@@ -45,7 +45,7 @@ const Menu = () => {
     <>
       <div className="flex flex-col mx-auto text-center justify-center">
         {/* Buttons */}
-        <div className="text-lg space-x-4 mb-8 p-6" role="group">
+        <div className="text-lg space-x-4 mb-8" role="group">
           {["Main Dish", "Drinks", "Desserts"].map((btn, index) => (
             <button
               key={index}
